@@ -19,7 +19,7 @@ class AgentsController extends Controller
      */
     public function index()
     {
-        //
+        return AgentsResource::collection(Agent::all());
     }
 
     /**
@@ -33,9 +33,13 @@ class AgentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAgentRequest $request)
+    public function store(Request $request)
     {
-        //
+        $faker = \Faker\Factory::create(1);
+       $agent = Agent::create([
+           'name'=> $faker->name
+       ]);
+       return new AgentsResource($agent);
     }
 
 
@@ -43,19 +47,7 @@ class AgentsController extends Controller
 
     {
         return new AgentsResource($agent);
-        /**return response()->json([
-       'data'=>[
-           'id'=>$agent->id,
-           'type'=>'agents',
-           'attributes'=>[
-               'name'=>$agent->name,
-               'created_at'=>$agent->created_at,
-               'updated_at'=>$agent->updated_at
 
-           ]
-       ]
-
-   ]);**/
     }
 
     /**
@@ -69,10 +61,15 @@ class AgentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAgentRequest $request, Agent $agent)
+    public function update(Request $request, Agent $agent)
 
     {
-        //
+        $agent->update([
+            //'name'=>'Mimie'
+            'name'=> $request->input('name')
+        ]);
+
+        return new AgentsResource($agent);
     }
 
     /**
@@ -80,6 +77,7 @@ class AgentsController extends Controller
      */
     public function destroy(Agent $agent)
     {
-        //
+        $agent->delete();
+        return response(null, 204);
     }
 }

@@ -14,7 +14,7 @@ use App\Http\Controllers\AgentsController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-Route::get('/test', function (Request $request){
+Route::get('/test', function (){
     return 'Authenticated';
 });
 
@@ -27,8 +27,22 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
            return $request->user();
         });
 
-    Route::get('/agents/{agent}',[AgentsController::class,'show']);
+    //Route::get('/agents/{agent}',[AgentsController::class,'show']);
 
+    //Route::get('/agents',[AgentsController::class,'index']);
+
+
+        Route::apiResource('/agents', AgentsController::class);
+
+    //Route::apiResources('/agents', [AgentsController::class]);
+
+        //Route::apiResource('/agents', [AgentsController::class]);
+
+
+        //Route::apiResources([
+           // '/agents' => 'AgentsController',
+            // Add more resources here if needed
+       // ]);
     });
 //agents{agent}
 //for one specific agent
