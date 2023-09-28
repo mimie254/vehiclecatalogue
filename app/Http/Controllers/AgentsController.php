@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AgentsRequest;
 use App\Http\Requests\StoreAgentRequest;
 use App\Http\Requests\UpdateAgentRequest;
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class AgentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AgentsRequest $request)
     {
         $faker = \Faker\Factory::create(1);
        $agent = Agent::create([
@@ -61,7 +62,7 @@ class AgentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Agent $agent)
+    public function update(AgentsRequest $request, Agent $agent)
 
     {
         $agent->update([

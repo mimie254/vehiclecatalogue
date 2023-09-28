@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AgentsController;
+use App\Http\Controllers\VehiclesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
         Route::apiResource('/agents', AgentsController::class);
+        Route::apiResource('/vehicles', VehiclesController::class);
+
 
     //Route::apiResources('/agents', [AgentsController::class]);
 

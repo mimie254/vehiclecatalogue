@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicle extends Model
+class VehicleAgent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','make', 'model', 'description', 'year_of_manufacture'];
+    protected $table = 'vehicle_agent';
 }
